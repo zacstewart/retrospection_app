@@ -1,8 +1,7 @@
-article.retrospection
+h2.retrospected_on
+  datetime= l retrospection.retrospected_on, format: :long
+article.retrospection.well
   header
-    h1
-      datetime= l retrospection.retrospected_on, format: :long
-      small
-        = link_to 'Edit', edit_retrospection_path(retrospection),
-          class: 'btn btn-small pull-right'
-  .well== retrospection.body_html
+    = link_to 'Edit', edit_retrospection_path(retrospection),
+      class: 'btn pull-right'
+  == retrospection.body_html

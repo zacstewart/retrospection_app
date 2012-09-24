@@ -7,15 +7,18 @@ html
     = csrf_meta_tags
   body
     .container
-      .hero-unit
-        h1 Retrospection App
-        hr
-        p
-          = form_tag retrospections_path, method: :get, class: 'form-search' do
-            = text_field_tag 'q', params[:q],
-                class: 'input-medium search-query',
-                placeholder: 'I want to'
-            = submit_tag 'Search', class: 'btn'
-            ' 
-            = link_to 'Today', retrospection_path('today'), class: 'btn btn-success'
+      h1 Retrospection App
+      .navbar
+        .navbar-inner
+          ul.nav
+            li= link_to root_path do
+              i.icon-home
+            li= link_to 'Retrospections', retrospections_path
+            li= link_to 'Sleep', sleeps_path
+          ul.nav.pull-right
+            li= form_tag retrospections_path, \
+              method: :get, class: 'navbar-search' do
+                = text_field_tag 'q', params[:q], \
+                    class: 'input-medium search-query',
+                    placeholder: 'Search retrospections…'
       == yield

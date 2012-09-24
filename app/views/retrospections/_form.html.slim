@@ -4,6 +4,7 @@
   .form-actions.btn-group
     = f.submit nil, class: 'btn btn-primary'
     -  if @retrospection.persisted?
+      = link_to 'Cancel', :back, class: 'btn'
       = link_to 'Delete', @retrospection,
         class: 'btn btn-danger',
         method: :delete,

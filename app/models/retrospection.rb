@@ -20,4 +20,8 @@ class Retrospection < ActiveRecord::Base
   def to_param
     retrospected_on
   end
+  
+  def today_or_later?
+    retrospected_on >= Date.today
+  end
 end

@@ -1,2 +1,5 @@
-= link_to 'Previous', previous_day(retrospection), class: 'btn'
-= link_to 'Next', next_day(retrospection), class: 'btn pull-right'
+= link_to 'Previous', previous_day(retrospection), class: 'btn pull-left'
+- unless retrospection.today_or_later?
+  span.btn-group.pull-right
+    = link_to 'Today', retrospection_path('today'), class: 'btn btn-success'
+    = link_to 'Next', next_day(retrospection), class: 'btn'
