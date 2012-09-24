@@ -8,7 +8,7 @@ A simple app for writing a daily, searchable retrospection
 
 ## Getting started
 
-Prerequisits:
+Prerequisites:
 
 * Postgres
 
