@@ -21,4 +21,7 @@ html
                 = text_field_tag 'q', params[:q], \
                     class: 'input-medium search-query',
                     placeholder: 'Search retrospections…'
+            li= link_to 'Sign out', destroy_user_session_path, method: :delete
+      - flash.each do |severity,msg|
+        .alert class="alert-#{severity}"= msg
       == yield

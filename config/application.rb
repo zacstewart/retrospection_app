@@ -68,5 +68,8 @@ module RetrospectionApp
     config.generators do |g|
       g.test_framework :rspec, fixture: false, views: false
     end
+
+    # Per Heroku
+    config.assets.initialize_on_precompile = false
   end
 end

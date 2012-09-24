@@ -2,8 +2,11 @@ class Retrospection < ActiveRecord::Base
   include PgSearch
   DATE_REGEX = /\d{4}-\d{1,2}-\d{1,2}/.freeze
   
+  belongs_to :user
+  
   attr_accessible :body, :retrospected_on
-  validates :body, :retrospected_on, presence: true
+  
+  validates :user_id, :body, :retrospected_on, presence: true
   validate :retrospection_cannot_be_speculation
   
   scope :chronological, order('retrospected_on DESC')

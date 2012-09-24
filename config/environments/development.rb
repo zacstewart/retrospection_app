@@ -34,4 +34,7 @@ RetrospectionApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Set default mailer URL for development
+  config.action_mailer.default_url_options = { :host => 'localhost:5000' }
 end

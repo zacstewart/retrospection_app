@@ -1,9 +1,11 @@
 class RetrospectionsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     if params[:q].present?
-      retrospections = Retrospection.search(params[:q])
+      retrospections = current_user.retrospections.search(params[:q])
     else
-      retrospections = Retrospection.chronological.all
+      retrospections = current_user.retrospections.chronological.all
     end
     @retrospections = RetrospectionDecorator.decorate(retrospections)
   end
@@ -39,7 +41,7 @@ class RetrospectionsController < ApplicationController
   end
 
   def create
-    @retrospection = Retrospection.new(params[:retrospection])
+    @retrospection = current_user.retrospections.new(params[:retrospection])
 
     if @retrospection.save
       redirect_to @retrospection
@@ -52,6 +54,6 @@ private
 
   def get_retrospection
     id = params[:id] == 'today' ? Date.today.to_s : params[:id]
-    @retrospection = RetrospectionDecorator.find(id)
+    @retrospection = RetrospectionDecorator.decorate(current_user.retrospections.find(id))
   end
 end

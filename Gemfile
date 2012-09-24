@@ -8,6 +8,7 @@ gem 'slim-rails'
 gem 'redcarpet'
 gem 'draper'
 gem 'time_diff'
+gem 'devise'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

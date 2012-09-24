@@ -1,21 +1,23 @@
 class SleepsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
-    @sleeps = SleepDecorator.decorate(Sleep.chronological)
+    @sleeps = SleepDecorator.decorate(current_user.sleeps.chronological)
   end
 
   def new
-    @sleep = Sleep.new
+    @sleep = current_user.sleeps.new
   end
 
   def edit
-    @sleep = Sleep.find(params[:id])
+    @sleep = current_user.sleeps.find(params[:id])
   end
   
   def create
-    @sleep = Sleep.new(params[:sleep])
+    @sleep = current_user.sleeps.new(params[:sleep])
     
     if @sleep.save
-      flash[:success] = 'Successfully created sleep'
+      flash[:success] = 'Successfully logged sleep'
       redirect_to Sleep
     else
       render :new
