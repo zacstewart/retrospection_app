@@ -1,0 +1,21 @@
+DOCTYPE html
+html
+  head
+    title Retrospection App
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  body
+    .container
+      .hero-unit
+        h1 Retrospection App
+        hr
+        p
+          = form_tag retrospections_path, method: :get, class: 'form-search' do
+            = text_field_tag 'q', params[:q],
+                class: 'input-medium search-query',
+                placeholder: 'I want to'
+            = submit_tag 'Search', class: 'btn'
+            ' 
+            = link_to 'Today', retrospection_path('today'), class: 'btn btn-success'
+      == yield

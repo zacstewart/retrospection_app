@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  database: retrospection_app_development
+  host: localhost
+  min_messages: WARNING
+
+test:
+  adapter: postgresql
+  database: retrospection_app_test
+  host: localhost
+  min_messages: WARNING
