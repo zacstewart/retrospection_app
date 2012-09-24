@@ -4,6 +4,7 @@ class Retrospection < ActiveRecord::Base
   
   attr_accessible :body, :retrospected_on
   validates :body, :retrospected_on, presence: true
+  validate :retrospection_cannot_be_speculation
   
   scope :chronological, order('retrospected_on DESC')
   pg_search_scope :search, against: :body,
@@ -14,6 +15,12 @@ class Retrospection < ActiveRecord::Base
       find_or_initialize_by_retrospected_on(param)
     else
       super(param)
+    end
+  end
+  
+  def retrospection_cannot_be_speculation
+    if retrospected_on > Date.today
+      errors.add(:retrospected_on, "Can't be later than today")
     end
   end
   
