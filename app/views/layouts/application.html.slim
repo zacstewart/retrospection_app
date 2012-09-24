@@ -16,12 +16,15 @@ html
             li= link_to 'Retrospections', retrospections_path
             li= link_to 'Sleep', sleeps_path
           ul.nav.pull-right
-            li= form_tag retrospections_path, \
-              method: :get, class: 'navbar-search' do
-                = text_field_tag 'q', params[:q], \
-                    class: 'input-medium search-query',
-                    placeholder: 'Search retrospections…'
-            li= link_to 'Sign out', destroy_user_session_path, method: :delete
+            - if current_user
+              li= form_tag retrospections_path, \
+                method: :get, class: 'navbar-search' do
+                  = text_field_tag 'q', params[:q], \
+                      class: 'input-medium search-query',
+                      placeholder: 'Search retrospections…'
+              li= link_to 'Sign out', destroy_user_session_path, method: :delete
+            - else
+              li= link_to 'Sign in', new_user_session_path
       - flash.each do |severity,msg|
         .alert class="alert-#{severity}"= msg
       == yield
