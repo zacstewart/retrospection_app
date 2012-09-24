@@ -54,6 +54,6 @@ private
 
   def get_retrospection
     id = params[:id] == 'today' ? Date.today.to_s : params[:id]
-    @retrospection = RetrospectionDecorator.decorate(current_user.retrospections.find(id))
+    @retrospection = RetrospectionDecorator.decorate(current_user.retrospections.find_by_param(id))
   end
 end

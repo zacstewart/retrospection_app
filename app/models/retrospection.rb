@@ -13,11 +13,11 @@ class Retrospection < ActiveRecord::Base
   pg_search_scope :search, against: :body,
     using: {tsearch: {dictionary: "english"}}
     
-  def self.find(param)
+  def self.find_by_param(param)
     if param =~ DATE_REGEX
       find_or_initialize_by_retrospected_on(param)
     else
-      super(param)
+      find(param)
     end
   end
   
