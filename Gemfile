@@ -7,6 +7,7 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'redcarpet'
 gem 'draper'
+gem 'time_diff'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

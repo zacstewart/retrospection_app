@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924012717) do
+ActiveRecord::Schema.define(:version => 20120924034206) do
 
   create_table "retrospections", :force => true do |t|
     t.text     "body"
@@ -21,5 +21,12 @@ ActiveRecord::Schema.define(:version => 20120924012717) do
   end
 
   add_index "retrospections", ["retrospected_on"], :name => "index_retrospections_on_retrospected_on", :unique => true
+
+  create_table "sleeps", :force => true do |t|
+    t.datetime "slept_at"
+    t.datetime "woke_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
