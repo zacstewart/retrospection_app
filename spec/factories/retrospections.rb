@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :retrospection do
-    body "MyText"
+    retrospected_on { Date.today }
+    body "Binks ate a ladybug today"
   end
 end
