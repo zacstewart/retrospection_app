@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :retrospection do
+    association :user
     retrospected_on { Date.today }
     body "Binks ate a ladybug today"
   end

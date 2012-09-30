@@ -1,8 +1,13 @@
-.hero-unit
-  h1 Retrospection App
-  p
-    blockquote “We pass through the present with our eyes blindfolded. We are permitted merely to sense and guess at what we are actually experiencing. Only later when the cloth is untied can we glance at the past and find out what we have experienced and what meaning it has.”
-    cite — Milan Kundera
-  p Retrospection App helps you keep track of your own history. Write a daily retrospective, log your ambient data and try to make sense of your past.
-  p
-   = link_to 'Try it out', new_user_registration_path, class: 'btn btn-success btn-large'
+- if current_user.anonymous?
+  .hero-unit
+    h1 Retrospection App
+    p
+      blockquote “We pass through the present with our eyes blindfolded. We are permitted merely to sense and guess at what we are actually experiencing. Only later when the cloth is untied can we glance at the past and find out what we have experienced and what meaning it has.”
+      cite — Milan Kundera
+    p Retrospection App helps you keep track of your own history. Write a daily retrospective, log your ambient data and try to make sense of your past.
+    p
+      = link_to 'Try it out', retrospection_path('today'), class: 'btn btn-success btn-large'
+      '  
+      = link_to 'Sign up', new_user_registration_path, class: 'btn btn-info btn-large'
+- else
+  p Some snazzy dashboard
