@@ -9,7 +9,7 @@ gem 'redcarpet'
 gem 'draper'
 gem 'time_diff'
 gem 'devise'
-gem 'jquery-rails'
+gem 'jbuilder'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -17,6 +17,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
 end
+gem 'jquery-rails'
 
 group :test, :development do
   gem 'factory_girl_rails'
