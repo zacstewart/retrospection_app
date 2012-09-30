@@ -35,3 +35,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
 end
+
+group :production do
+  gem 'newrelic_rpm'
+end
