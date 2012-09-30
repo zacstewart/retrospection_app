@@ -6,7 +6,7 @@ describe 'Retrospections resource' do
       @date = Date.today
       FactoryGirl.create(:retrospection, retrospected_on: @date)
     end
-    
+
     describe 'show' do
       it 'should show the retrospection' do
         visit retrospection_path(@date.to_s)
@@ -20,7 +20,7 @@ describe 'Retrospections resource' do
         expect(find('textarea#retrospection_body')).to have_content('Binks ate a ladybug today')
       end
     end
-    
+
     describe 'search' do
       it 'should render a list of retrospections matching the query' do
         visit retrospections_path(q: 'ladybug')
@@ -28,7 +28,7 @@ describe 'Retrospections resource' do
       end
     end
   end
-  
+
   context 'without retrospection existing on date' do
     describe 'show' do
       it 'should render edit form' do
