@@ -3,31 +3,50 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   margin =
-    top: 10
-    bottom: 10
+    top: 20
+    bottom: 20
+    left: 10
+    right: 10
   width = 940
-  height = 200
+  height = 300
 
   d3.json '/sleeps.json', (sleeps) ->
+    sleeps.forEach (sleep) ->
+      sleep.date = Date.parse(sleep.slept_at)
+
     xScale = d3.scale.ordinal()
       .domain(d3.range(sleeps.length))
-      .rangeRoundBands([height - margin.top - margin.bottom, 0], .2)
+      .rangeRoundBands([width - margin.left - margin.right, margin.left + margin.right], .1)
 
-    heightScale = d3.scale.linear()
+    yScale = d3.scale.linear()
       .domain([0, d3.max(sleeps.map((d) -> d.seconds_asleep))])
-      .range([0,height])
+      .range([height - margin.top - margin.bottom, margin.top + margin.bottom])
+
+    yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient('right')
+      .tickSize(1)
+      .tickPadding(5)
 
     svg = d3.select('#sleeps').append('svg')
         .attr('class', 'chart bar')
         .attr('width', width)
         .attr('height', height)
-      .append('g')
-        .attr('transform', "translate(10, 10)")
 
-    svg.selectAll('rect')
-      .data(sleeps)
-    .enter().append('rect')
-      .attr('x', (d, i) -> xScale(i))
-      .attr('y', (d) -> height - heightScale(d.seconds_asleep))
-      .attr('height', (d) -> heightScale(d.seconds_asleep))
-      .attr('width', xScale.rangeBand())
+    svg.append('g')
+      .selectAll('rect.bar')
+        .data(sleeps)
+      .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('fill', 'steelblue')
+        .attr('x', (d, i) -> xScale(i))
+        .attr('y', (d) -> yScale(d.seconds_asleep))
+        .attr('height', (d) -> height - margin.top - margin.bottom - yScale(d.seconds_asleep))
+        .attr('width', xScale.rangeBand())
+
+    svg.append('g')
+        .attr('class', 'y axis')
+        .attr('fill', '#333')
+        .call(yAxis)
+      .selectAll('text')
+        .text((d) -> (d / 3600).toFixed(2))
