@@ -4,7 +4,12 @@ RetrospectionApp::Application.routes.draw do
   resources :sleeps, except: [:show, :new] do
     get 'week_of/:date' => 'sleeps#week_of', on: :collection
   end
-  resources :trackables, except: :new
+
+  resources :trackables, except: :new do
+    resources :trackings
+  end
+
   resources :retrospections, except: :new
+
   root to: 'application#home'
 end

@@ -1,1 +1,18 @@
+= link_to 'Log', '#new_tracking',
+  class: 'btn btn-success btn-large pull-right',
+  'data-toggle' => 'modal'
 h1= @trackable.name
+= render @trackable.trackings
+
+= simple_form_for [@trackable, @trackable.trackings.new],
+  html: {class: 'modal-form modal hide fade',
+    role: 'dialog'} do |f|
+  .modal-header
+    = button_tag(:type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true') do
+      ' ×
+    h3 Log #{@trackable.name}
+  .modal-body
+    = f.input :quantity, label: @trackable.unit_plural.capitalize
+  .modal-footer
+    button.btn type="button" data-dismiss="modal" Cancel
+    = f.submit 'Track it', class: 'btn btn-primary'

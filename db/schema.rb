@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930210318) do
+ActiveRecord::Schema.define(:version => 20121001011008) do
 
   create_table "retrospections", :force => true do |t|
     t.text     "body"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(:version => 20120930210318) do
   end
 
   add_index "trackables", ["user_id"], :name => "index_trackables_on_user_id"
+
+  create_table "trackings", :force => true do |t|
+    t.integer  "trackable_id"
+    t.float    "quantity"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "trackings", ["trackable_id"], :name => "index_trackings_on_trackable_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                :default => "", :null => false

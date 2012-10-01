@@ -13,5 +13,6 @@ class TrackablesController < ApplicationController
 
   def show
     @trackable = current_user.trackables.find(params[:id])
+    @trackable = TrackableDecorator.decorate(@trackable)
   end
 end
