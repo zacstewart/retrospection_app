@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :retrospections
   has_many :sleeps
+  has_many :trackables
 
   attr_accessible *ACCESSIBLE_ATTRS
 

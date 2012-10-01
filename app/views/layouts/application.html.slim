@@ -15,6 +15,16 @@ html
               i.icon-home
             li= link_to 'Retrospections', retrospections_path
             li= link_to 'Sleep', sleeps_path
+            - current_user.trackables.each do |trackable|
+              li= link_to trackable.name, trackable_path(trackable)
+            li.dropdown
+              = link_to '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' do
+                ' Track anything
+                b.caret
+              ul.dropdown-menu
+                li= link_to 'Show all', trackables_path
+                li= link_to 'Add something new', '#new_trackable',
+                  'data-toggle' => 'modal'
           ul.nav.pull-right
             li= form_tag retrospections_path, \
               method: :get, class: 'navbar-search' do
@@ -29,3 +39,4 @@ html
       - flash.each do |severity,msg|
         .alert class="alert-#{severity}"= msg
       == yield
+      = render partial: 'layouts/shared'
