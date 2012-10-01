@@ -5,10 +5,6 @@ class SleepsController < ApplicationController
     @sleeps = SleepDecorator.decorate(current_user.sleeps.chronological)
   end
 
-  def new
-    @sleep = current_user.sleeps.new
-  end
-
   def edit
     @sleep = current_user.sleeps.find(params[:id])
   end

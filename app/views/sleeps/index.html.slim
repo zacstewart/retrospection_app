@@ -4,15 +4,17 @@
 h1 Sleeps
 #sleeps
 = render @sleeps
-#new_sleep.modal.hide.fade role="dialog" aria-labelledby="newSleepLabel" aria-hidden="true"
-  = simple_form_for(Sleep.new, html: {class: 'modal-form'}) do |f|
-    .modal-header
-      = button_tag(:type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true') do
-        ' ×
-      h3 Log Sleep
-    .modal-body
-      = f.input :slept_at
-      = f.input :woke_at
-    .modal-footer
-      button.btn type="button" data-dismiss="modal" Cancel
-      = f.submit 'Log it', class: 'btn btn-primary'
+= simple_form_for current_user.sleeps.new,
+  html: {id: 'new_sleep',
+    class: 'modal-form modal hide fade',
+    role: 'dialog'} do |f|
+  .modal-header
+    = button_tag(:type => 'button', :class => 'close', 'data-dismiss' => 'modal', 'aria-hidden' => 'true') do
+      ' ×
+    h3 Log Sleep
+  .modal-body
+    = f.input :slept_at
+    = f.input :woke_at
+  .modal-footer
+    button.btn type="button" data-dismiss="modal" Cancel
+    = f.submit 'Log it', class: 'btn btn-primary'
