@@ -1,4 +1,5 @@
 = simple_form_for current_user.trackables.new,
+  url: main_app.trackables_path,
   html: {id: 'new_trackable',
     class: 'modal-form modal hide fade',
     role: 'dialog'} do |f|

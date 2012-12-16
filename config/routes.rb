@@ -12,4 +12,6 @@ RetrospectionApp::Application.routes.draw do
   resources :retrospections, except: :new
 
   root to: 'application#home'
+
+  mount Devise::Oauth2Providable::Engine => '/oauth2'
 end

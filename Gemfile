@@ -10,6 +10,7 @@ gem 'draper'
 gem 'time_diff'
 gem 'devise'
 gem 'jbuilder'
+gem 'devise_oauth2_providable'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

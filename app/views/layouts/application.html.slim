@@ -11,10 +11,10 @@ html
       .navbar
         .navbar-inner
           ul.nav
-            li= link_to root_path do
+            li= link_to main_app.root_path do
               i.icon-home
-            li= link_to 'Retrospections', retrospections_path
-            li= link_to 'Sleep', sleeps_path
+            li= link_to 'Retrospections', main_app.retrospections_path
+            li= link_to 'Sleep', main_app.sleeps_path
             li.dropdown
               = link_to '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' do
                 ' Track anything
@@ -22,21 +22,21 @@ html
               ul.dropdown-menu
                 - if current_user.trackables.any?
                   - current_user.trackables.each do |trackable|
-                    li= link_to trackable.name, trackable_path(trackable)
+                    li= link_to trackable.name, main_app.trackable_path(trackable)
                   li.divider
                 li= link_to 'Add something new', '#new_trackable',
                   'data-toggle' => 'modal'
           ul.nav.pull-right
-            li= form_tag retrospections_path, \
+            li= form_tag main_app.retrospections_path, \
               method: :get, class: 'navbar-search' do
                 = text_field_tag 'q', params[:q], \
                     class: 'input-medium search-query',
                     placeholder: 'Search retrospections…'
             - if current_user.anonymous?
-              li= link_to 'Sign up', new_user_registration_path
-              li= link_to 'Sign in', new_user_session_path
+              li= link_to 'Sign up', main_app.new_user_registration_path
+              li= link_to 'Sign in', main_app.new_user_session_path
             - else
-              li= link_to 'Sign out', destroy_user_session_path, method: :delete
+              li= link_to 'Sign out', main_app.destroy_user_session_path, method: :delete
       - flash.each do |severity,msg|
         .alert class="alert-#{severity}"= msg
       == yield

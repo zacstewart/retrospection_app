@@ -1,1 +1,1 @@
-rvm 1.9.3@retrospection_app
+rvm --create 1.9.3@retrospection_app
