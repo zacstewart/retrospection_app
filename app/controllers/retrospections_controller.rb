@@ -8,6 +8,10 @@ class RetrospectionsController < ApplicationController
       retrospections = current_user.retrospections.chronological.all
     end
     @retrospections = RetrospectionDecorator.decorate(retrospections)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @retrospections }
   end
 
   def show
